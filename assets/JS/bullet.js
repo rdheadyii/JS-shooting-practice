@@ -1,4 +1,16 @@
 export default class Bullet {
+    colors = [
+        'red',
+        'blue',
+        'green',
+        'yellow',
+        'orange',
+        'purple',
+        'pink',
+        'brown',
+        'grey',
+    ];
+
     constructor(x, y, speed, damage) {
         this.x = x;
         this.y = y;
@@ -7,7 +19,7 @@ export default class Bullet {
 
         this.width = 5;
         this.height = 15;
-        this.color = 'red';
+        this.color = this.colors[Math.floor(Math.random() * this.colors.length)];
     }
 
     draw(ctx) {
