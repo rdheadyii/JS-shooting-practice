@@ -1,7 +1,8 @@
 export default class Player {
-    constructor(x, y) {
+    constructor(x, y, bulletController) {
         this.x = x;
         this.y = y;
+        this.bulletController = bulletController;
         this.width = 50;
         this.height = 50;
         this.speed = 4;
@@ -16,6 +17,20 @@ export default class Player {
         ctx.strokeRect(this.x, this.y, this.width, this.height)
         ctx.fillStyle = 'black';
         ctx.fillRect(this.x, this.y, this.width, this.height)
+
+        this.shoot();
+    }
+
+    shoot() {
+        if (this.shootPressed) {
+            console.log('shoot');
+            const speed = 5;
+            const delay = 7;
+            const damage = 1;
+            const bulletX = this.x + this.width/2;
+            const bulletY = this.y;
+            this.bulletController.shoot(bulletX, bulletY, speed, delay, damage)
+        }
     }
 
     move() {
@@ -52,6 +67,10 @@ export default class Player {
         if (e.code === 'KeyD') {
             this.rightPressed = true;
         }
+
+        if (e.code === 'Space') {
+            this.shootPressed = true;
+        }
     };
 
     keyup = (e) => {
@@ -69,6 +88,10 @@ export default class Player {
 
         if (e.code === 'KeyD') {
             this.rightPressed = false;
+        }
+
+        if (e.code === 'Space') {
+            this.shootPressed = false;
         }
     };
 }
