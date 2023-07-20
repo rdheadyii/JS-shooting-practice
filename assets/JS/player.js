@@ -1,5 +1,5 @@
 export default class Player {
-    constructor(x, y){
+    constructor(x, y) {
         this.x = x;
         this.y = y;
         this.width = 50;
@@ -11,10 +11,29 @@ export default class Player {
     }
 
     draw(ctx) {
+        this.move();
         ctx.strokeStyle = 'yellow';
         ctx.strokeRect(this.x, this.y, this.width, this.height)
         ctx.fillStyle = 'black';
         ctx.fillRect(this.x, this.y, this.width, this.height)
+    }
+
+    move() {
+        if (this.upPressed) {
+            this.y -= this.speed
+        }
+
+        if (this.downPressed) {
+            this.y += this.speed
+        }
+
+        if (this.leftPressed) {
+            this.x -= this.speed
+        }
+
+        if (this.rightPressed) {
+            this.x += this.speed
+        }
     }
 
     keydown = (e) => {
@@ -33,7 +52,7 @@ export default class Player {
         if (e.code === 'KeyD') {
             this.rightPressed = true;
         }
-    }
+    };
 
     keyup = (e) => {
         if (e.code === 'KeyW') {
@@ -51,5 +70,5 @@ export default class Player {
         if (e.code === 'KeyD') {
             this.rightPressed = false;
         }
-    }
+    };
 }
