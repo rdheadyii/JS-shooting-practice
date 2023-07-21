@@ -29,7 +29,7 @@ export default class Player {
             const damage = 1;
             const bulletX = this.x + this.width/2;
             const bulletY = this.y;
-            this.bulletController.shoot(bulletX, bulletY, speed, delay, damage)
+            this.bulletController.shoot(bulletX, bulletY, speed, damage, delay);
         }
     }
 
