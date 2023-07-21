@@ -32,7 +32,14 @@ function gameLoop() {
     bulletController.draw(ctx)
     player.draw(ctx);
     enemies.forEach(enemy => {
-        enemy.draw(ctx);
+        if(bulletController.collideWith(enemy)) {
+            if (enemy.health <= 0) {
+                const index = enemies.indexOf(enemy);
+                enemies.splice(index, 1);
+            }
+        } else {
+            enemy.draw(ctx);
+        }
     });
 }
 
